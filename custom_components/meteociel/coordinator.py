@@ -34,4 +34,5 @@ class MeteocielCoordinator(DataUpdateCoordinator):
                 self._scraper.fetch_yesterday_rain
             )
         except Exception as exc:
-            raise UpdateFailed(f"Erreur lors du scraping Météociel : {exc}") from exc
+            raise UpdateFailed(f"Erreur lors du scraping Météociel : {exc}")
+            from exc

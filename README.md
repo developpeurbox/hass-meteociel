@@ -10,21 +10,21 @@ et expose un sensor `sensor.pluie_hier` avec la pluviométrie du jour précéden
 
 ---
 
-## Installation
-
-### Via HACS (recommandé)
+## 🏗️ Installation via HACS
 
 1. Dans HACS → **Intégrations** → menu ⋮ → **Dépôts personnalisés**
-2. Ajouter l'URL de ce repo, catégorie **Intégration**
-3. Installer "Météociel Pluviométrie"
-4. Redémarrer Home Assistant
+2. Ajouter l'URL de ce dépôt GitHub, catégorie **Integration**
+   https://github.com/developpeurbox/hass-meteociel.git
+4. Installer **Footao TV**
+5. Redémarrer Home Assistant
+6. **Paramètres → Appareils & services → Ajouter une intégration → Footao TV**
 
-### Manuelle
+## 🏗️ Installation manuelle
 
-```bash
-cp -r custom_components/meteociel /config/custom_components/
-```
-Redémarre Home Assistant.
+1. Téléchargez le dossier `custom_components/meteociel/` de ce dépôt.
+2. Copiez-le dans le dossier `custom_components/meteociel/`  de votre instance Home Assistant.
+3. Redémarrez Home Assistant
+
 
 ---
 

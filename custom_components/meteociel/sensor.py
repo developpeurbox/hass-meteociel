@@ -15,6 +15,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN, SENSOR_UNIQUE_ID_PREFIX
+from .coordinator import MeteocielCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -35,10 +36,12 @@ class MeteocielRainSensor(CoordinatorEntity, SensorEntity):
     _attr_name = "Pluie Hier"
     _attr_native_unit_of_measurement = "mm"
     _attr_device_class = SensorDeviceClass.PRECIPITATION
+    # MEASUREMENT : valeur ponctuelle sans notion de cumul/reset sur le state
+    # Le cumul long-terme est géré via async_import_statistics dans le coordinator
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_icon = "mdi:weather-rainy"
 
-    def __init__(self, coordinator, entry: ConfigEntry) -> None:
+    def __init__(self, coordinator: MeteocielCoordinator, entry: ConfigEntry) -> None:
         """Initialisation du sensor."""
         super().__init__(coordinator)
         station_code = entry.data["station_code"]
@@ -52,7 +55,7 @@ class MeteocielRainSensor(CoordinatorEntity, SensorEntity):
 
     @property
     def native_value(self) -> float | None:
-        """Valeur du sensor = mm de pluie d'hier."""
+        """Valeur courante = mm de pluie d'hier."""
         if self.coordinator.data is None:
             return None
         return self.coordinator.data.get("pluie_mm")
@@ -66,6 +69,5 @@ class MeteocielRainSensor(CoordinatorEntity, SensorEntity):
         return {
             "date_mesure": self.coordinator.data.get("date", yesterday),
             "station_code": self.coordinator.data.get("station_code"),
-            "source": "meteociel.fr
-            ",
+            "source": "meteociel.fr",
         }

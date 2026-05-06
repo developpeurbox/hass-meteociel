@@ -4,8 +4,12 @@ from __future__ import annotations
 import logging
 from datetime import date, timedelta
 
+import urllib3
 import requests
 from bs4 import BeautifulSoup
+
+# Supprime le warning SSL car meteociel.fr a un certificat non vérifié
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 from .const import METEOCIEL_BASE_URL
 

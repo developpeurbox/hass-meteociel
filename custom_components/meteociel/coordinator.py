@@ -27,7 +27,8 @@ class MeteocielCoordinator(DataUpdateCoordinator):
         """Initialisation du coordinator."""
         self._scraper = MeteocielScraper(station_code)
         self._station_code = station_code
-        self._statistic_id = f"{DOMAIN}:{SENSOR_UNIQUE_ID_PREFIX}_{station_code}"
+        # Format valide HA : "domain:identifiant_snake_case_minuscules"
+        self._statistic_id = f"{DOMAIN}:pluie_{station_code}"
 
         super().__init__(
             hass,

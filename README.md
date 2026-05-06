@@ -3,7 +3,7 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
 [![Community Forum][forum-shield]][forum]
 
-# ha-meteociel — Intégration Home Assistant Pluviométrie
+# Météociel — Intégration Home Assistant Pluviométrie
 
 Intégration custom pour Home Assistant qui scrape [Météociel](https://www.meteociel.fr)
 et expose un sensor `sensor.pluie_hier` avec la pluviométrie du jour précédent.

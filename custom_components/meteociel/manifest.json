@@ -1,0 +1,12 @@
+{
+  "domain": "meteociel",
+  "name": "Météociel Pluviométrie",
+  "version": "1.0.0",
+  "documentation": "https://github.com/ton-repo/ha-meteociel",
+  "issue_tracker": "https://github.com/ton-repo/ha-meteociel/issues",
+  "dependencies": [],
+  "codeowners": ["@ton-github"],
+  "requirements": ["beautifulsoup4"],
+  "iot_class": "cloud_polling",
+  "config_flow": true
+}

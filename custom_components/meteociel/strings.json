@@ -1,0 +1,19 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurer Météociel",
+        "description": "Renseigne le code station Météociel (ex: 482 pour Lyon-Bron).",
+        "data": {
+          "station_code": "Code station Météociel"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de contacter Météociel ou de trouver les données. Vérifie le code station."
+    },
+    "abort": {
+      "already_configured": "Cette station est déjà configurée."
+    }
+  }
+}

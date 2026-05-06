@@ -1,3 +1,8 @@
+[![GitHub Release][releases-shield]][releases]
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
+
+[![Community Forum][forum-shield]][forum]
+
 # ha-meteociel — Intégration Home Assistant Pluviométrie
 
 Intégration custom pour Home Assistant qui scrape [Météociel](https://www.meteociel.fr)
@@ -54,38 +59,6 @@ Redémarre Home Assistant.
 
 ---
 
-## Import de l'historique SQL
-
-Si tu possèdes un historique dans une table MySQL `Pluie` (champs `date`, `pluie`),
-utilise le script fourni pour injecter ces données dans les statistiques long-terme de HA.
-
-```bash
-cd tools/
-pip install mysql-connector-python requests
-```
-
-Édite les variables dans `import_pluie_history.py` :
-
-```python
-DB_CONFIG = {
-    "host": "192.168.0.12",
-    "user": "TON_USER_SQL",
-    "password": "TON_MOT_DE_PASSE",
-    "database": "TA_BASE",
-}
-HA_URL   = "http://192.168.0.12:8123"
-HA_TOKEN = "TON_LONG_LIVED_ACCESS_TOKEN"
-```
-
-> **Token HA** : Profil utilisateur → bas de page → **Jetons d'accès longue durée**
-
-Lance ensuite :
-
-```bash
-python3 import_pluie_history.py
-```
-
----
 
 ## Automatisation conseillée
 
@@ -111,3 +84,14 @@ automation:
   conformément à la structure observée sur Météociel (logique identique au script PHP original).
 - Le mois dans l'URL de lien Météociel est décalé de +1 (`mois2 + 1`), comme dans le PHP.
 - `verify=False` est conservé pour contourner les soucis de certificat de Météociel.
+
+
+[commits-shield]: https://img.shields.io/github/commit-activity/y/custom-components/readme.svg?style=for-the-badge
+[commits]: https://github.com/developpeurbox/hass-footao/readme/commits/main
+[hacs]: https://github.com/hacs/integration
+[hacsbadge]: https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge
+[exampleimg]: example.png
+[forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg?style=for-the-badge
+[forum]: https://community.home-assistant.io/
+[releases-shield]: https://img.shields.io/github/v/release/developpeurbox/hass-meteociel?style=for-the-badge
+[releases]: https://github.com/developpeurbox/meteociel/releases

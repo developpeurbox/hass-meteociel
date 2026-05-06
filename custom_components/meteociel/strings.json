@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Configurer Météociel",
-        "description": "Renseigne le code station Météociel (ex: 482 pour Lyon-Bron).",
+        "description": "Choisis la ville que tu veux voir.",
         "data": {
           "station_code": "Code station Météociel"
         }

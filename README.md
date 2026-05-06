@@ -95,4 +95,4 @@ automation:
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg?style=for-the-badge
 [forum]: https://community.home-assistant.io/
 [releases-shield]: https://img.shields.io/github/v/release/developpeurbox/hass-meteociel?style=for-the-badge
-[releases]: https://github.com/developpeurbox/meteociel/releases
+[releases]: https://github.com/developpeurbox/hass-meteociel/releases

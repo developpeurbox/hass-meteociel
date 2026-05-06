@@ -22,7 +22,7 @@ def _load_cities() -> dict[str, str]:
         cities = json.load(f)
 
     return {
-        city["code"]: f"{city['nom']} ({city['departement']}) [{city['type']}]"
+        city["code"]: f"{city['nom']} ({city['departement']})"
         for city in sorted(cities, key=lambda c: c["nom"])
         if city["type"] != "inactive"
     }

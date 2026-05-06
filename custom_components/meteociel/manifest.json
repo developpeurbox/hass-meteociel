@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "documentation": "https://github.com/developpeurbox/hass-meteociel",
   "issue_tracker": "https://github.com/developpeurbox/hass-meteociel/issues",
-  "dependencies": [],
+  "dependencies": ["recorder"],
   "codeowners": ["@developpeurbox"],
   "requirements": ["beautifulsoup4"],
   "iot_class": "cloud_polling",

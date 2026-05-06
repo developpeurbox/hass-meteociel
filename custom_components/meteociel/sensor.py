@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import logging
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, timedelta
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -15,7 +15,6 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN, SENSOR_UNIQUE_ID_PREFIX
-from .coordinator import MeteocielCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -33,13 +32,13 @@ async def async_setup_entry(
 class MeteocielRainSensor(CoordinatorEntity, SensorEntity):
     """Sensor représentant la pluviométrie du jour précédent."""
 
-    _attr_name = "Pluie"
+    _attr_name = "Pluie Hier"
     _attr_native_unit_of_measurement = "mm"
     _attr_device_class = SensorDeviceClass.PRECIPITATION
-    _attr_state_class = SensorStateClass.TOTAL
+    _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_icon = "mdi:weather-rainy"
 
-    def __init__(self, coordinator: MeteocielCoordinator, entry: ConfigEntry) -> None:
+    def __init__(self, coordinator, entry: ConfigEntry) -> None:
         """Initialisation du sensor."""
         super().__init__(coordinator)
         station_code = entry.data["station_code"]
@@ -51,35 +50,12 @@ class MeteocielRainSensor(CoordinatorEntity, SensorEntity):
             "model": "Scraper Pluviométrie",
         }
 
-    def _yesterday_midnight_utc(self) -> datetime:
-        """Retourne minuit (UTC) du jour J-1, en tenant compte du timezone HA."""
-        # On utilise le timezone configuré dans HA si disponible
-        ha_tz = self.hass.config.time_zone
-        try:
-            from zoneinfo import ZoneInfo
-            tz = ZoneInfo(ha_tz)
-        except Exception:
-            tz = timezone.utc
-
-        yesterday = date.today() - timedelta(days=1)
-        # Minuit heure locale d'hier, converti en UTC
-        midnight_local = datetime(yesterday.year, yesterday.month, yesterday.day, 0, 0, 0, tzinfo=tz)
-        return midnight_local.astimezone(timezone.utc)
-
     @property
     def native_value(self) -> float | None:
         """Valeur du sensor = mm de pluie d'hier."""
         if self.coordinator.data is None:
             return None
         return self.coordinator.data.get("pluie_mm")
-
-    @property
-    def last_reset(self) -> datetime:
-        """
-        Timestamp de référence de la mesure = minuit UTC du jour J-1.
-        Cela indique à HA que la valeur correspond à hier, pas à maintenant.
-        """
-        return self._yesterday_midnight_utc()
 
     @property
     def extra_state_attributes(self) -> dict:
@@ -90,5 +66,6 @@ class MeteocielRainSensor(CoordinatorEntity, SensorEntity):
         return {
             "date_mesure": self.coordinator.data.get("date", yesterday),
             "station_code": self.coordinator.data.get("station_code"),
-            "source": "meteociel.fr",
+            "source": "meteociel.fr
+            ",
         }

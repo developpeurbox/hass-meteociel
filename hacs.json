@@ -1,4 +1,6 @@
 {
   "name": "Météociel Pluviométrie",
+  "country": ["FR"],
+  "homeassistant": "2023.1.0",
   "render_readme": true
 }

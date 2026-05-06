@@ -33,7 +33,7 @@ async def async_setup_entry(
 class MeteocielRainSensor(CoordinatorEntity, SensorEntity):
     """Sensor représentant la pluviométrie du jour précédent."""
 
-    _attr_name = "Pluie Hier"
+    _attr_name = "Pluie"
     _attr_native_unit_of_measurement = "mm"
     _attr_device_class = SensorDeviceClass.PRECIPITATION
     _attr_state_class = SensorStateClass.TOTAL
